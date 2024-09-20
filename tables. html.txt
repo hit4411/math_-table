@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multiplication Table Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6a11cb, #2575fc);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        h1 {
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        input {
+            padding: 10px;
+            margin: 10px 5px;
+            border: none;
+            border-radius: 5px;
+            width: 200px;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        button {
+            padding: 10px 15px;
+            background-color: #ff4081;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+        button:hover {
+            background-color: #e91e63;
+            transform: scale(1.05);
+        }
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            border: 1px solid #fff;
+            padding: 12px;
+            text-align: center;
+        }
+        th {
+            background-color: #ff4081;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Multiplication Table Generator</h1>
+    <input type="number" id="numberInput" placeholder="Enter a positive number" min="1">
+    <input type="number" id="rangeInput" placeholder="Enter range (e.g. 10)" min="1">
+    <br>
+    <button onclick="generateTable()">Generate Table</button>
+    <button onclick="clearOutput()">Clear Output</button>
+    <div id="output"></div>
+    
+    <script>
+        function generateTable() {
+            const number = parseInt(document.getElementById('numberInput').value);
+            const range = parseInt(document.getElementById('rangeInput').value);
+            let output = '';
+
+            if (isNaN(number) || number < 1 || isNaN(range) || range < 1) {
+                output = "<p>Please enter valid positive numbers.</p>";
+            } else {
+                output += `<table><tr><th>Multiplication Table of ${number}</th></tr>`;
+                for (let i = 1; i <= range; i++) {
+                    output += `<tr><td>${number} x ${i} = ${number * i}</td></tr>`;
+                }
+                output += `</table>`;
+            }
+
+            document.getElementById('output').innerHTML = output;
+        }
+
+        function clearOutput() {
+            document.getElementById('output').innerHTML = '';
+            document.getElementById('numberInput').value = '';
+            document.getElementById('rangeInput').value = '';
+        }
+    </script>
+
+</body>
+</html>
